@@ -2,55 +2,74 @@ const fileSystem = require('fs')
 
 /**  Read files */
 
-// fileSystem.readFile('./documents/text.txt', (error, data) => {
+const read = () => {
 
-//     if (error) console.log(error)
+    fileSystem.readFile('./documents/text.txt', (error, data) => {
+
+        if (error) console.log(error)
+        
+            console.log(data.toString())
     
-//         console.log(data.toString())
+    })
+    
+    console.log('last line')
 
-// })
+}
 
-// console.log('last line')
+
 
 /** Write Files */
 
-// fileSystem.writeFile('./documents/text1.txt', 'Hola!', () => {
+const write = () => {
 
-//     console.log('Data updated')
+    fileSystem.writeFile('./documents/text1.txt', 'Hola!', () => {
 
-// })
+        console.log('Data updated')
+    
+    })
+    
+
+}
 
 /** Directories */
 
-// if (!fileSystem.existsSync('./assets')) {
+const deleteAndcreateDirs = () => {
 
-//     fileSystem.mkdir('./assets', (error) => {
-//         if (error) console.log(error)
+    if (!fileSystem.existsSync('./assets')) {
 
-//         console.log('Folder created')
-//     })
+        fileSystem.mkdir('./assets', (error) => {
+            if (error) console.log(error)
+    
+            console.log('Folder created')
+        })
+    
+    } else {
+    
+        fileSystem.rmdir('./assets', (error) => {
+    
+            if(error) console.log(error)
+            console.log('Folder deleted')
+    
+        })
+    
+    }
 
-// } else {
-
-//     fileSystem.rmdir('./assets', (error) => {
-
-//         if(error) console.log(error)
-//         console.log('Folder deleted')
-
-//     })
-
-// }
+}
 
 /** Delete files */
 
-if (fileSystem.existsSync('./documents/text1.txt')) {
+const deleteFiles = () => {
 
-    fileSystem.unlink('./documents/text1.txt', (error) => {
+    if (fileSystem.existsSync('./documents/text1.txt')) {
 
-        if(error) console.log(error)
-
-        console.log('File deleted')
-
-    })
-
+        fileSystem.unlink('./documents/text1.txt', (error) => {
+    
+            if(error) console.log(error)
+    
+            console.log('File deleted')
+    
+        })
+    
+    }
+    
 }
