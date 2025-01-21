@@ -1,4 +1,5 @@
 const express = require('express')
+const morgan = require('morgan')
 
 const app = express()
 
@@ -8,6 +9,28 @@ app.set('view engine', 'ejs')
 app.set('views', 'pages')
 
 app.listen(3000)
+
+// app.use((req, res, next) => {
+
+//     console.log(req.hostname)
+
+//     next()
+
+// })
+
+app.use((req, res, next) => {
+
+    console.log('In the next Middleware')
+
+    next()
+
+})
+
+app.use(morgan('dev'))
+
+// static files
+
+app.use(express.static('public'))
 
 app.get('/', (req, res) => {
 
@@ -29,7 +52,7 @@ app.get('/about', (req, res) => {
 
 app.get('/blogs/create', (req, res) => {
 
-    res.redirect('blogCreate')
+    res.render('blogCreate')
 
 })
 
